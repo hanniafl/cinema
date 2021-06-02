@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comentario;
+
 use Illuminate\Http\Request;
 
 class ComentarioController extends Controller
@@ -14,7 +15,8 @@ class ComentarioController extends Controller
      */
     public function index()
     {
-        //
+        $comentarios = Comentario::all();
+        return view('comentario.comentarioIndex', compact('comentarios'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ComentarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('comentario.comentarioForm');
     }
 
     /**
@@ -35,7 +37,9 @@ class ComentarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    
+        Comentario::create($request->all());
+        return redirect()->route('comentario.index');
     }
 
     /**
@@ -46,7 +50,7 @@ class ComentarioController extends Controller
      */
     public function show(Comentario $comentario)
     {
-        //
+        return view('comentario.comentarioShow', compact('comentario'));
     }
 
     /**
@@ -57,7 +61,7 @@ class ComentarioController extends Controller
      */
     public function edit(Comentario $comentario)
     {
-        //
+        return view('comentario.comentarioForm', compact('comentario'));
     }
 
     /**

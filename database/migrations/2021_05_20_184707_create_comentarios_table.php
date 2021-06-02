@@ -19,6 +19,7 @@ class CreateComentariosTable extends Migration
             $table->string('fecha_publicacion');
             $table->integer('peliculaId');
             $table->integer('usuarioID');
+            $table->timestamps();
 
         });
     }
