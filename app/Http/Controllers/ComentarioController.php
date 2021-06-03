@@ -73,7 +73,9 @@ class ComentarioController extends Controller
      */
     public function update(Request $request, Comentario $comentario)
     {
-        //
+        Comentario::where('id', $comentario->id)->update($request->except('_token', '_method'));
+
+        return redirect()->route('comentario.show', $comentario);
     }
 
     /**
@@ -84,6 +86,7 @@ class ComentarioController extends Controller
      */
     public function destroy(Comentario $comentario)
     {
-        //
+        $comentario->delete();
+        return redirect()->route('comentario.index');
     }
 }

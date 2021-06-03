@@ -28,7 +28,11 @@
               </tr>
 
      </tbody>
-
-
 </table>
+
+    <form action="{{ route('comentario.destroy', $comentario) }}" method="POST">
+          @csrf 
+          @method('DELETE')
+          <input type="submit" value="Eliminar programa">
+    </form>
 @endsection 
