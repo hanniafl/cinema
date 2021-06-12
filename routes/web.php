@@ -1,6 +1,8 @@
 <?php
 Use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\PeliculaController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +27,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::resource('comentario', ComentarioController::class);
 
 Route::resource('peliculas', PeliculaController::class);
+
+Route::resource('users', UserController::class);
