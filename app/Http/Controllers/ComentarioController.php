@@ -26,7 +26,7 @@ class ComentarioController extends Controller
      */
     public function create()
     {
-        return view('comentario.comentarioForm');
+        return view('comentario.comentarioCreate');
     }
 
     /**
@@ -39,7 +39,8 @@ class ComentarioController extends Controller
     {
     
         Comentario::create($request->all());
-        return redirect()->route('comentario.index');
+        //return redirect()->route('comentario.index');
+        return redirect()->route('comentario.index')->with('success', 'Comentario agregado correctamente');
     }
 
     /**
@@ -61,7 +62,7 @@ class ComentarioController extends Controller
      */
     public function edit(Comentario $comentario)
     {
-        return view('comentario.comentarioForm', compact('comentario'));
+        return view('comentario.comentarioEdit', compact('comentario'));
     }
 
     /**
@@ -75,7 +76,8 @@ class ComentarioController extends Controller
     {
         Comentario::where('id', $comentario->id)->update($request->except('_token', '_method'));
 
-        return redirect()->route('comentario.show', $comentario);
+        
+        return redirect()->route('comentario.index')->with('sucess', 'Comentario actualizado correctamente');
     }
 
     /**
@@ -87,6 +89,7 @@ class ComentarioController extends Controller
     public function destroy(Comentario $comentario)
     {
         $comentario->delete();
-        return redirect()->route('comentario.index');
+        
+        return back()->with('succes', 'Comentario eliminado correctamente');
     }
 }

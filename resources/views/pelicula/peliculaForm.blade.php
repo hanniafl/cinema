@@ -1,10 +1,5 @@
-@extends('layouts.temp')
-@section('contenido')
-     <h1>Formulario de peliculas</h1>
-
-     <p>
-        <a href="{{ route('peliculas.index') }}"> Listado de peliculas </a>
-     </p>
+@extends('layouts.main', ['activePage' => 'users', 'titlePage' => 'Detalles del usuario'])
+@section('content')
 
      @if(isset($pelicula))
          {{-- Edicion de programa --}}
@@ -14,6 +9,7 @@
      {{-- Creacion de programa --}}
         <form action="{{ route('peliculas.store') }}" method="POST">
      @endif
+
 
         @csrf 
         <label for="titulo"> Titulo: </label>
@@ -42,4 +38,8 @@
 
         <input type="submit" value="Guardar">
         </form>
+
+        <p>
+        <a href="{{ route('peliculas.index') }}"> Listado de peliculas </a>
+     </p>
 @endsection 

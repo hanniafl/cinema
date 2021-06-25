@@ -1,6 +1,6 @@
-@extends('layouts.main', ['activePage' => 'comentarios', 'titlePage' => 'Comentarios'])
+@extends('layouts.main', ['activePage' => 'users', 'titlePage' => 'Usuarios'])
 @section('content')
-<div class="content">
+    <div class="content">
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
@@ -8,8 +8,8 @@
               <div class="col-md-12">
                 <div class="card">
                   <div class="card-header card-header-primary">
-                    <h4 class="card-title">Comentarios</h4>
-                    <p class="card-category">Lista de comentarios</p>
+                    <h4 class="card-title">Usuarios</h4>
+                    <p class="card-category">Usuarios registrados</p>
                   </div>
                   <div class="card-body">
                     @if (session('success'))
@@ -19,31 +19,29 @@
                     @endif
                     <div class="row">
                       <div class="col-12 text-right">
-                        <a href="{{ route('comentario.create') }}" class="btn btn-sm btn-facebook">Añadir comentario</a>
+                        <a href="{{ route('users.create') }}" class="btn btn-sm btn-facebook">Añadir usuario</a>
                       </div>
                     </div>
                     <div class="table-responsive">
                       <table class="table">
                         <thead class="text-primary">
-                          <th>Id</th>
-                          <th>Texto</th>
-                          <th>Fecha publicacion</th>
-                          <th>Pelicula ID</th>
-                          <th>Usuario ID</th>
+                          <th>ID</th>
+                          <th>Nombre</th>
+                          <th>Correo</th>
+                          <th>Created_at</th>
                           <th class="text-right">Acciones</th>
                         </thead>
                         <tbody>
-                          @foreach ($comentarios as $comentario)
+                          @foreach ($users as $user)
                             <tr>
-                              <td>{{ $comentario->id}}</td>
-                              <td>{{ $comentario->texto}}</td>
-                              <td>{{ $comentario->fecha_publicacion}}</td>
-                              <td>{{ $comentario->peliculaId}}</td>
-                              <td>{{ $comentario->usuarioID}}</td>
+                              <td>{{ $user->id }}</td>
+                              <td>{{ $user->name }}</td>
+                              <td>{{ $user->email }}</td>
+                              <td>{{ $user->created_at }}</td>
                               <td class="td-actions text-right">
-                                <a href="{{ route('comentario.show', $comentario->id) }}" class="btn btn-info"><i class="material-icons">person</i></a>
-                                <a href="{{ route('comentario.edit', $comentario->id) }}" class="btn btn-warning"><i class="material-icons">edit</i></a>
-                                <form action="{{ route('comentario.destroy', $comentario->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Seguro?')">
+                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-info"><i class="material-icons">person</i></a>
+                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning"><i class="material-icons">edit</i></a>
+                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Seguro?')">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger" type="submit" rel="tooltip">
@@ -58,6 +56,7 @@
                     </div>
                   </div>
                   <div class="card-footer mr-auto">
+                    {{ $users->links() }}
                   </div>
                 </div>
               </div>
@@ -66,4 +65,4 @@
         </div>
       </div>
     </div>
-@endsection 
+@endsection

@@ -6,7 +6,7 @@
   -->
   <div class="logo">
     <a href="https://creative-tim.com/" class="simple-text logo-normal">
-      {{ __('Creative Tim') }}
+      {{ __('CINEMA') }}
     </a>
   </div>
   <div class="sidebar-wrapper">
@@ -17,46 +17,23 @@
             <p>{{ __('Dashboard') }}</p>
         </a>
       </li>
-      <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
-        <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
-          <i><img style="width:25px" src="{{ asset ('img/laravel.svg') }}"></i>
-          <p>{{ __('Laravel Examples') }}
-            <b class="caret"></b>
-          </p>
-        </a>
-        <div class="collapse show" id="laravelExample">
-          <ul class="nav">
-            <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
-              <a class="nav-link" href="#">
-                <span class="sidebar-mini"> UP </span>
-                <span class="sidebar-normal">{{ __('User profile') }} </span>
-              </a>
-            </li>
-            <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
-              <a class="nav-link" href="#">
-                <span class="sidebar-mini"> UM </span>
-                <span class="sidebar-normal"> {{ __('User Management') }} </span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </li>
+      
       <li class="nav-item{{ $activePage == 'users' ? ' active' : '' }}">
-        <a class="nav-link" href="#">
-          <i class="material-icons">content_paste</i>
-            <p>{{ __('Table List') }}</p>
+      <a class="nav-link" href="{{ route('users.index') }}">
+          <i class="material-icons">people</i>
+            <p>Usuarios</p>
         </a>
       </li>
-      <li class="nav-item{{ $activePage == 'typography' ? ' active' : '' }}">
-        <a class="nav-link" href="#">
-          <i class="material-icons">library_books</i>
-            <p>{{ __('Typography') }}</p>
+      <li class="nav-item{{ $activePage == 'Pelicula' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('peliculas.index') }}">
+          <i class="material-icons">movie</i>
+            <p>{{ __('Peliculas') }}</p>
         </a>
       </li>
       <li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }}">
-        <a class="nav-link" href="#">
-          <i class="material-icons">bubble_chart</i>
-          <p>{{ __('Icons') }}</p>
+        <a class="nav-link" href="{{ route('comentario.index')}}">
+          <i class="material-icons">note</i>
+          <p>{{ __('Comentarios') }}</p>
         </a>
       </li>
       <li class="nav-item{{ $activePage == 'map' ? ' active' : '' }}">

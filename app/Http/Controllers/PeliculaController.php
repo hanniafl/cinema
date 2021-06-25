@@ -27,7 +27,7 @@ class PeliculaController extends Controller
      */
     public function create()
     {
-        return view('pelicula.peliculaForm');
+        return view('pelicula.peliculaCreate');
     }
 
     /**
@@ -50,7 +50,7 @@ class PeliculaController extends Controller
         $pelicula->comentarios_id = $request->comentarios_id;
         $pelicula->save();
 
-        return redirect()->route('peliculas.index');
+        return redirect()->route('peliculas.index', $pelicula->id)->with('success', 'Pelicula creada correctamente');
     }
 
     /**
@@ -72,7 +72,7 @@ class PeliculaController extends Controller
      */
     public function edit(Pelicula $pelicula)
     {
-        return view('pelicula.peliculaForm', compact('pelicula'));
+        return view('pelicula.peliculaEdit', compact('pelicula'));
     }
 
     /**
@@ -84,9 +84,14 @@ class PeliculaController extends Controller
      */
     public function update(Request $request, Pelicula $pelicula)
     {
-        Pelicula::where('id', $pelicula->id)->update($request->except('_token', '_method'));
+        $data = $request->only('texto', 'fecha_publicacion', 'peliculaId', 'usuarioID');
+    
+        $pelicula->update($data);
+        return redirect()->route('peliculas.index')->with('sucess', 'Pelicula actualizada correctamente');
 
-        return redirect()->route('peliculas.show', $pelicula);
+        //Pelicula::where('id', $pelicula->id)->update($request->except('_token', '_method'));
+
+       // return redirect()->route('peliculas.index')->with('sucess', 'Pelicula actualizada correctamente');
     }
 
     /**
