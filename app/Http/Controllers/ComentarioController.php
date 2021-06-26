@@ -74,6 +74,9 @@ class ComentarioController extends Controller
      */
     public function update(Request $request, Comentario $comentario)
     {
+        //$request->validate($this->rules + ['peliculaId' => ['required', 'integer', Rule::unique('comentarios')->ignore($comentario->id)]] 
+        //+ ['usuarioID' => ['required', 'integer', Rule::unique('comentarios')->ignore($comentario->id)]]);
+
         Comentario::where('id', $comentario->id)->update($request->except('_token', '_method'));
 
         
